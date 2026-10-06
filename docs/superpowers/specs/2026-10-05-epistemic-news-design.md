@@ -325,7 +325,7 @@ Navigation: **Today · Explore · My interests · Saved · Sources**, with Setti
 
 ### Today
 
-A dated finite edition, category/lane filters, breadth overview, last-source-update information and a manual refresh action. Each card shows original headline, source, publication time/access status, content type, safe source excerpt where available, selection reason, Read original, Save, and optional Yes/No/Unsure subject-interest feedback. Unknown reading time or publication date stays unknown rather than being invented. External source links open safely with attribution.
+A dated finite edition, category/lane filters, breadth overview, last-source-update information and a manual refresh action. Current-edition items must have a valid publication timestamp no more than 24 hours old; stale or undated items are excluded and the UI reports the exclusion count. This applies to technical/blog items too; a future slower-reading archive can be a separate product surface. Each card shows original headline, source, publication time/access status, content type, safe source excerpt where available, selection reason, Read original, Save, and optional Yes/No/Unsure subject-interest feedback. Unknown reading time or publication date stays unknown rather than being invented. External source links open safely with attribution.
 
 The sidebar gives current domain distribution and a restrained model-learning status such as “Collecting evidence.” Link to the interest map rather than show a continuously rising knowledge score. A clearly marked optional calibration panel uses broadly sampled cards without revealing prediction probabilities before feedback.
 

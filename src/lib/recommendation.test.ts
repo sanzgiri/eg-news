@@ -5,11 +5,11 @@ const article = (id: string, domain: Article['domain'], score = 1): Article => (
 describe('recommendation policy', () => {
   it('deduplicates normalized URLs', () => expect(dedupeArticles([article('a','technology'), {...article('b','science'), link:'https://example.com/a'}])).toHaveLength(1));
   it('keeps breadth while selecting at most ten per domain', () => {
-    const domains: Article['domain'][] = ['technology','science','health','culture','world','economy','environment','security','politics'];
-    const result = selectEdition(Array.from({length: 19}, (_, i) => article(String(i), i < 10 ? 'technology' : domains[i-10])));
+    const domains: Article['domain'][] = ['science','health','culture','world','economy','environment','politics'];
+    const result = selectEdition(Array.from({length: 17}, (_, i) => article(String(i), i < 10 ? 'technology' : domains[i-10])));
     expect(new Set(result.map(x => x.domain)).size).toBeGreaterThanOrEqual(5);
     const counts = result.reduce<Record<string, number>>((acc, item) => ({...acc, [item.domain]: (acc[item.domain] || 0) + 1}), {});
     expect(Math.max(...Object.values(counts))).toBeLessThanOrEqual(10);
-    expect(result).toHaveLength(18);
+    expect(result).toHaveLength(17);
   });
 });

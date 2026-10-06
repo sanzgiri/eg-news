@@ -1,0 +1,6 @@
+import type { Article, Domain, Feedback } from './types';
+import { articleInterestPrediction } from './recommendation';
+function softmax(values:number[],tau=1){const m=Math.max(...values);const ex=values.map(v=>Math.exp((v-m)/tau));const sum=ex.reduce((a,b)=>a+b,0);return ex.map(v=>v/sum)}
+function js(p:number[],q:number[]){const m=p.map((v,i)=>(v+q[i])/2);const kl=(a:number[])=>a.reduce((s,v,i)=>s+(v===0?0:v*Math.log(v/m[i])),0);return (kl(p)+kl(q))/2}
+export function epistemicGain(candidate:Article,catalog:Article[],feedback:Feedback[]):{eg:number;eeg:number}{ const current=softmax(catalog.map(a=>articleInterestPrediction(a,feedback))); const plus=softmax(catalog.map(a=>articleInterestPrediction(a,[...feedback,{articleId:candidate.id,subject:'yes',prediction:.5,baselinePrediction:.5,timestamp:''}]))); const minus=softmax(catalog.map(a=>articleInterestPrediction(a,[...feedback,{articleId:candidate.id,subject:'no',prediction:.5,baselinePrediction:.5,timestamp:''}]))); const pos=js(current,plus),neg=js(current,minus),p=articleInterestPrediction(candidate,feedback); return {eg:pos+neg,eeg:p*pos+(1-p)*neg}; }
+export function domainLabel(domain:Domain){return domain.replace(/(^|[-_])\w/g,m=>m.toUpperCase()).replace('-', ' ')}

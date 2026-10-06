@@ -1,0 +1,104 @@
+{
+  "plan": {
+    "status": "updated_design_review_pending",
+    "implementation_authorized": true,
+    "execution_ready": false,
+    "approval_state": {"conversational_direction_approved": true, "updated_written_spec_approved": false, "written_implementation_plan_approved": false, "execution_method": null},
+    "goal": "Build a personal news reader that learns worthwhile interests, supports broad exploration, rejects attention optimization, and separates model learning from self-reported human learning.",
+    "deliverable": "Private responsive news reader with constrained editions, experimental epistemic personalization, two separate trackers, and evaluation evidence.",
+    "design_document": "docs/superpowers/specs/2026-10-05-epistemic-news-design.md",
+    "research": {
+      "doi": "10.1145/3773078.3831822",
+      "local_pdf": "3773078.3831822.pdf",
+      "full_main_paper_read": true,
+      "supplement_read": true,
+      "local_supplement_pdf": "appendix_standalone.pdf",
+      "supplement_review_document": "docs/appendix-review.md",
+      "code_available_at_review": false,
+      "code_repository": "https://github.com/egrec-paper/egrec",
+      "review_date": "2026-10-05",
+      "boundary": "Verified EG/EEG equations; explicit usefulness feedback, cold-start content model, sampled catalog and user-learning tracker are app adaptations, not evaluated paper findings. No transferred coverage guarantees."
+    },
+    "source_plan": {
+      "document": "docs/source-coverage-plan.md",
+      "planned_sources": ["UniverRSS", "CosmoRSS", "Hacker News", "AllSides via Open RSS", "Morning Brew (ingestion route pending)"],
+      "allsides_preview_url": "https://openrss.org/www.allsides.com/unbiased-balanced-news",
+      "allsides_feed_url": "https://openrss.org/feed/www.allsides.com/unbiased-balanced-news",
+      "allsides_xml_verified": true,
+      "ground_news_included": false,
+      "geographic_priorities": {"local_city": "Portland", "local_state": "Oregon", "international_first": "India", "other_international_allowed": true},
+      "additional_sources_policy": "Report thin or absent subject domains to the user; add further feeds only with approval.",
+      "coverage_assessment_status": "provisional_source_mix_review; rolling content audit not yet performed"
+    },
+    "success_criteria": [
+      "Primary: paired interest-prediction Brier-score reduction versus a frozen onboarding-only baseline on broadly sampled calibration cards; report counts, versions, response rate and descriptive uncertainty.",
+      "Supporting: explicit worth-my-attention feedback and user-rated relevance, without sacrificing quality or breadth.",
+      "Breadth, source concentration and event deduplication safeguards hold even with AI-heavy feedback.",
+      "The reader discovers useful interests outside the onboarding profile.",
+      "Model evidence and self-reported human understanding are displayed independently, without a merged score.",
+      "Quality gates, undo/deletion, privacy and outage fallbacks pass acceptance fixtures.",
+      "CTR, dwell time, refresh frequency and notification opens are not optimization targets."
+    ],
+    "subgoals": [
+      {"id": "G1", "description": "Ground the design in verified research and explicit product policies.", "success_test": "T1/T2 produce method fixtures, limitation notes and reviewed requirements.", "tasks": ["T1", "T2"]},
+      {"id": "G2", "description": "Provide broad, quality-screened content and a finite baseline reader.", "success_test": "T3-T5 ingest authorized content and create constrained editions without duplicate events or clickbait promotion.", "tasks": ["T3", "T4", "T5"]},
+      {"id": "G3", "description": "Learn interests from explicit evidence with informative, constrained exploration.", "success_test": "T6-T9 preserve unknown labels, frozen counterfactual scorer weights and protected discovery/public-interest slots.", "tasks": ["T6", "T7", "T8", "T9"]},
+      {"id": "G4", "description": "Display two honest trackers and safeguard profile data.", "success_test": "T10/T12 distinguish self-report from model change and demonstrate complete undo/deletion and safe fallbacks.", "tasks": ["T10", "T12"]},
+      {"id": "G5", "description": "Evaluate contribution and decide whether epistemic personalization earns its complexity.", "success_test": "T11/T13/T14 compare controlled baselines and report usefulness, breadth, frustration and limitations without attention metrics.", "tasks": ["T11", "T13", "T14"]}
+    ],
+    "tasks": [
+      {"id": "T1", "description": "Main paper and supplied appendices reviewed; next resolve code/training-configuration gaps, document metric/proof issues and specify numeric float64 EG/EEG golden fixtures.", "required_agent": "research", "collaborators": ["human", "critic"], "expected_output": "Research-method note, explicit adaptation boundary and formula fixtures.", "estimated_effort": "M", "effort_uncertain": true, "prerequisites": [], "status": "planned"},
+      {"id": "T2", "description": "Confirm remaining language, sources/access and hosting defaults plus feedback/privacy contracts; Portland/Oregon and India-first international scope are already confirmed.", "required_agent": "human", "expected_output": "Reviewed product and data policies.", "estimated_effort": "S", "prerequisites": [], "status": "planned"},
+      {"id": "T3", "description": "Create adapters for the user-approved sources including AllSides/Open RSS, authorized ingestion, access flags, event clustering and a pre-personalization domain-gap audit.", "required_agent": "execution", "expected_output": "Normalized source inventory, freshness/coverage-gap report and passing duplicate, access and extraction fixtures; no unapproved publisher additions.", "estimated_effort": "L", "prerequisites": ["T2"], "status": "planned"},
+      {"id": "T4", "description": "Implement reviewable quality screening and a labeled evaluation set.", "required_agent": "execution", "collaborators": ["critic"], "expected_output": "Explained quality decisions that distinguish clickbait from legitimate concise reporting.", "estimated_effort": "L", "prerequisites": ["T3"], "status": "planned"},
+      {"id": "T5", "description": "Build finite baseline editions, original-source links and topic exploration paths.", "required_agent": "execution", "expected_output": "Quality/diversity-only reader with inventory-gap explanations.", "estimated_effort": "L", "prerequisites": ["T4"], "status": "planned"},
+      {"id": "T6", "description": "Add independent usefulness/understanding feedback, notes, export, undo and reset.", "required_agent": "execution", "expected_output": "Separate evidence streams; absent feedback remains unlabeled; retained evidence can be replayed.", "estimated_effort": "M", "prerequisites": ["T5"], "status": "planned"},
+      {"id": "T7", "description": "Add distinct interest evidence, separate article-fit state, frozen-round scorer, onboarding-only baseline, snapshots and paired prediction diagnostics; richer bandit alternatives are experimental.", "required_agent": "execution", "collaborators": ["data-analysis"], "expected_output": "Versioned multi-interest and article-fit states, drift-aware hypotheses and immutable paired model/baseline predictions recorded before feedback.", "estimated_effort": "L", "prerequisites": ["T6"], "status": "planned"},
+      {"id": "T8", "description": "Implement exact EG/EEG calculations and evaluate balanced-anchor approximation against full-catalog scoring.", "required_agent": "execution", "collaborators": ["research"], "expected_output": "Float64 golden formula fixtures, frozen-weight/non-mutation and tiny-divergence tests, temperature and anchor-sensitivity report.", "estimated_effort": "L", "prerequisites": ["T1", "T7"], "status": "planned"},
+      {"id": "T9", "description": "Integrate candidate exploration modes with domain/publisher/event constraints and protected discovery/public-interest slots.", "required_agent": "execution", "expected_output": "Constrained hybrid selector; AI-heavy and multi-label/syndication adversarial fixtures pass.", "estimated_effort": "M", "prerequisites": ["T5", "T8"], "status": "planned"},
+      {"id": "T10", "description": "Display gated interest-prediction improvement, an evidence-backed interest map and optional qualitative learning notes.", "required_agent": "execution", "collaborators": ["critic"], "expected_output": "Brier-skill dashboard with count/uncertainty/version qualifiers and cold-start gating; no combined knowledge percentage, unsupported causal explanation or gamification.", "estimated_effort": "M", "prerequisites": ["T6", "T7", "T8"], "status": "planned"},
+      {"id": "T11", "description": "Replay policies and simulate cold start, drift, sparse feedback and catalog shifts.", "required_agent": "data-analysis", "collaborators": ["critic"], "expected_output": "Quality/diversity, personalization, bandit, EG/EEG, novelty and random-discovery comparisons with explicit selection-bias limits.", "estimated_effort": "M", "prerequisites": ["T9", "T10"], "status": "planned"},
+      {"id": "T12", "description": "Harden network exposure, source fetching, outages and feedback-derived deletion.", "required_agent": "execution", "collaborators": ["critic"], "expected_output": "SSRF/auth, model/source-outage and deletion/rebuild acceptance evidence.", "estimated_effort": "M", "prerequisites": ["T9", "T10"], "status": "planned"},
+      {"id": "T13", "description": "Run a four-week personal pilot with predeclared balanced policy comparisons and weekly reflections.", "required_agent": "human", "collaborators": ["data-analysis"], "expected_output": "Descriptive usefulness, breadth, learning-self-report, response-burden and frustration report.", "estimated_effort": "L", "elapsed_duration_weeks": 4, "prerequisites": ["T11", "T12"], "status": "planned"},
+      {"id": "T14", "description": "Decide which features to retain, tune, defer or remove based on pilot evidence.", "required_agent": "critic", "collaborators": ["human"], "expected_output": "Reviewed product decision without claims of universal algorithm superiority or transferred theoretical guarantees.", "estimated_effort": "S", "prerequisites": ["T13"], "status": "planned"}
+    ],
+    "dependencies": [
+      {"from": "T2", "to": "T3"}, {"from": "T3", "to": "T4"}, {"from": "T4", "to": "T5"}, {"from": "T5", "to": "T6"}, {"from": "T6", "to": "T7"},
+      {"from": "T1", "to": "T8"}, {"from": "T7", "to": "T8"}, {"from": "T5", "to": "T9"}, {"from": "T8", "to": "T9"},
+      {"from": "T6", "to": "T10"}, {"from": "T7", "to": "T10"}, {"from": "T8", "to": "T10"},
+      {"from": "T9", "to": "T11"}, {"from": "T10", "to": "T11"}, {"from": "T9", "to": "T12"}, {"from": "T10", "to": "T12"},
+      {"from": "T11", "to": "T13"}, {"from": "T12", "to": "T13"}, {"from": "T13", "to": "T14"}
+    ],
+    "critical_path": ["T2", "T3", "T4", "T5", "T6", "T7", "T8", "T9", "T12", "T13", "T14"],
+    "critical_path_note": "Approximate integration path with tied branches at T9/T10 and T11/T12. Supplement/research delays may make T1 critical. One developer cannot execute independent tasks simultaneously without collaborators.",
+    "parallel_groups": [["T1", "T2"], ["T9", "T10"], ["T11", "T12"]],
+    "milestones": [
+      {"name": "Content readiness", "after_task": "T4", "verification": "Inventory spans domains/geographies and inspected quality fixtures pass."},
+      {"name": "Useful baseline reader", "after_task": "T6", "verification": "Finite editions, independent feedback and privacy controls work without personalization."},
+      {"name": "Experimental hybrid", "after_task": "T10", "also_requires": ["T9"], "verification": "Constrained exploration and separate trackers pass acceptance fixtures."},
+      {"name": "Pilot readiness", "after_task": "T12", "also_requires": ["T11"], "verification": "Evaluation diagnostics and failure/privacy tests pass."},
+      {"name": "Product decision", "after_task": "T14", "verification": "Pilot findings and limitations reviewed; continuation explicitly approved."}
+    ],
+    "risks": [
+      {"task": "T1", "risk": "Incomplete code/training configuration and inconsistent theoretical metric definitions or proof steps.", "mitigation": "Use verified main-paper formulas, document inconsistencies, retain baseline and make no coverage guarantees.", "likelihood": "high", "impact": "high"},
+      {"task": "T3", "risk": "Sparse local inventory and content-access restrictions.", "mitigation": "Curated authorized sources, metadata/link-out and explicit shortage explanations.", "likelihood": "high", "impact": "medium"},
+      {"task": "T4", "risk": "Quality screening suppresses legitimate brief or unfamiliar reporting.", "mitigation": "Human-reviewed fidelity/evidence fixtures and correction controls.", "likelihood": "medium", "impact": "high"},
+      {"task": "T5", "risk": "Token diversity through subtopic labels and duplicate syndicated stories.", "mitigation": "Broad multi-label caps, related-publisher metadata and event clustering.", "likelihood": "high", "impact": "high"},
+      {"task": "T7", "risk": "Tiny personal history creates false certainty and poor representation.", "mitigation": "Content-based cold start, separate uncertainty diagnostics, editable hypotheses and cautious calibration claims.", "likelihood": "high", "impact": "high"},
+      {"task": "T8", "risk": "EG measures model instability or catalog artifacts rather than useful discovery.", "mitigation": "Exact fixtures, full-catalog comparisons, temperature/anchor sensitivity and simpler exploration controls.", "likelihood": "high", "impact": "high"},
+      {"task": "T9", "risk": "Exploration sacrifices relevance or overwhelms public-interest coverage.", "mitigation": "Fixed protected lane budgets, quality gates and frustration evaluation.", "likelihood": "medium", "impact": "high"},
+      {"task": "T10", "risk": "Tracker implies verified comprehension or a percentage of the user understood.", "mitigation": "Separate self-report and model-change labels; no merged score or gamification.", "likelihood": "medium", "impact": "high"},
+      {"task": "T11", "risk": "Selective feedback and changing inventory imply spurious improvement.", "mitigation": "Identical eligibility/constraints, temporal holdout, response-rate reporting and descriptive limitations.", "likelihood": "high", "impact": "high"},
+      {"task": "T12", "risk": "Profile leakage, unsafe URL fetching and incomplete deletion.", "mitigation": "Private defaults, auth/network review, SSRF protection and retained-evidence rebuild tests.", "likelihood": "medium", "impact": "high"},
+      {"task": "T13", "risk": "Four-week single-user pilot is too small or feedback burden is excessive.", "mitigation": "Optional feedback, weekly reflection, cautious descriptive conclusions and user-approved extension only.", "likelihood": "high", "impact": "medium"}
+    ],
+    "open_questions": [
+      "Preferred languages beyond initial English and any India state/regional preferences; Portland/Oregon and India-first international scope are confirmed.",
+      "Private local or private hosted deployment; remote authentication requirements.",
+      "User-supplied feeds for thin domains, preferred/blocked sources and subscription permissions; Morning Brew acquisition route pending. AllSides/Open RSS replaces Ground News.",
+      "Daily reading budget and proposed 12-item edition mix.",
+      "Whether generated grounded explanations are desired; defer initially by default.",
+      "Availability of eventual implementation code and remaining training/configuration details; supplied appendices are now reviewed."
+    ]
+  }
+}

@@ -55,13 +55,10 @@ Do not use a free-form LLM as the ranking authority. A numerical, versioned poli
 
 ### Daily edition
 
-Default: **12 items**, with no infinite scroll, streaks, badges, autoplay, engagement notifications, or unread-count pressure. Start with this proposed mix:
-- 5 items from established interests.
-- 3 bridges from familiar interests to adjacent subjects.
-- 2 discovery items outside established interests.
-- 2 public-interest items, including local/regional coverage when available.
+The edition shows up to **10 stories per category**, with no load-more control, infinite scroll, streaks, badges, autoplay, engagement notifications, or unread-count pressure. As explicit feedback accumulates, the per-category cap tapers from **10 → 7 → 5 → 3**.
+Established interests, bridges, discovery, and public-interest stories are allocated across available categories. Portland/Oregon and India-first coverage remain protected when suitable fresh inventory exists.
 
-These are planning defaults to evaluate, not research-derived optimal proportions. Items should not repeat across lanes. The familiar/bridge counts are targets, not obligations: redistribute unused familiar slots into bridges or discovery when interests are sparse or domain caps would be breached. Never reduce the protected discovery/public-interest minimums to fill familiar slots. If appropriate material is unavailable, publish a shorter edition and explain the gap rather than lowering quality or inventing coverage.
+These are planning defaults to evaluate, not research-derived optimal proportions. Items should not repeat across categories. If a category has insufficient suitable material, publish fewer items and explain the gap rather than lowering quality or inventing coverage. There is deliberately no continuation control: a technology-heavy inventory must not create an endless technology feed.
 
 Each card provides the original headline, publisher, author/date when available, content type, approximate reading time when supported, topic tags, and “Why this is here.” Indicate original reporting, analysis, opinion, or blog commentary without treating blogs as inherently inferior. Link to the original source. Any later generated synopsis must be grounded in accessible content and labeled; metadata-only entries must not receive fabricated summaries.
 
@@ -325,11 +322,11 @@ Navigation: **Today · Explore · My interests · Saved · Sources**, with Setti
 
 ### Today
 
-A dated finite edition, category/lane filters, breadth overview, last-source-update information and a manual refresh action. Current-edition items must have a valid publication timestamp no more than 24 hours old; stale or undated items are excluded and the UI reports the exclusion count. This applies to technical/blog items too; a future slower-reading archive can be a separate product surface. Each card shows original headline, source, publication time/access status, content type, safe source excerpt where available, selection reason, Read original, Save, and optional Yes/No/Unsure subject-interest feedback. Unknown reading time or publication date stays unknown rather than being invented. External source links open safely with attribution.
+A dated finite edition, category/lane filters, breadth overview, last-source-update information and a manual refresh action. Current-edition items must have a valid publication timestamp. Time-sensitive domains (politics, world, economy, health, environment and security) must be no more than 24 hours old; non-breaking technical, science and culture items may be up to 7 days old. Stale or undated items are excluded and the UI reports the exclusion count. Each card shows original headline, source, publication time/access status, content type, safe source excerpt where available, selection reason, Read original, Save, and optional Yes/No/Unsure subject-interest feedback. Unknown reading time or publication date stays unknown rather than being invented. External source links open safely with attribution.
 
 The sidebar gives current domain distribution and a restrained model-learning status such as “Collecting evidence.” Link to the interest map rather than show a continuously rising knowledge score. A clearly marked optional calibration panel uses broadly sampled cards without revealing prediction probabilities before feedback.
 
-Publish up to 12 items according to the earlier lane targets and caps. Protect discovery/public-interest slots; use Portland/Oregon and India-first priorities when approved inventory supports them. If no suitable regional inventory exists, label the gap instead of inserting unrelated stories under that region.
+Publish up to the current per-category cap according to the category limits and breadth policy. If only technology has fresh inventory, the edition remains short rather than expanding technology indefinitely. Protect discovery/public-interest slots; use Portland/Oregon and India-first priorities when approved inventory supports them. If no suitable regional inventory exists, label the gap instead of inserting unrelated stories under that region.
 
 ### Explore
 

@@ -11,6 +11,7 @@ describe('classification and freshness',()=>{
   const now=Date.now();
   expect(isFresh(article(new Date(now-23*3600_000).toISOString()),new Date(now))).toBe(true);
   expect(isFresh(article(new Date(now-25*3600_000).toISOString()),new Date(now))).toBe(false);
+  expect(isFresh(article(new Date(now-6*24*3600_000).toISOString(),'technology','CosmoRSS'),new Date(now))).toBe(true);
   expect(isFresh(article(new Date(now-8*24*3600_000).toISOString(),'technology','CosmoRSS'),new Date(now))).toBe(false);
  });
 });
